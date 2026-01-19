@@ -1,0 +1,33 @@
+name: JMeter Performance Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  jmeter-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Install JMeter
+        run: |
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip
+          unzip apache-jmeter-5.6.3.zip
+
+      - name: Run JMeter Test
+        # Yaqeen kar len ke aapki JMX file ka naam MyTest.jmx hi hai
+        run: ./apache-jmeter-5.6.3/bin/jmeter -n -t MyTest.jmx -l results.jtl
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: results.jtl
