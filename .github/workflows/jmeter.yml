@@ -31,3 +31,19 @@ jobs:
         with:
           name: jmeter-results
           path: results.jtl
+
+          - name: Send Mail
+        if: always() # Taake test pass ho ya fail, email lazmi aye
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_APP_PASSWORD }}
+          subject: "JMeter Test Report - ${{ github.repository }}"
+          to: "manager-email@example.com" # Yahan apni ya manager ki email likhen
+          from: GitHub Actions
+          body: |
+            JMeter Performance Test complete ho gaya hai.
+            Status: ${{ job.status }}
+            Aap results GitHub Actions se download kar sakte hain.
