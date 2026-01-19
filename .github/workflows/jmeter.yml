@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_APP_PASSWORD }}
           subject: "JMeter Test Report - ${{ github.repository }}"
-          to: "bilalkhalid@example.com" # <--- Yahan apni email confirm karein
+          to: "alkhalidplumbing@gmail.com" # <--- Yahan apni email confirm karein
           from: GitHub Actions
           body: |
             JMeter Performance Test complete ho gaya hai.
