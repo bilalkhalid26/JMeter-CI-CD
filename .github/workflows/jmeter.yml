@@ -23,17 +23,17 @@ jobs:
           unzip apache-jmeter-5.6.3.zip
 
       - name: Run JMeter Test
-        # Yaqeen kar len ke aapki JMX file ka naam MyTest.jmx hi hai
         run: ./apache-jmeter-5.6.3/bin/jmeter -n -t MyTest.jmx -l results.jtl
 
       - name: Upload Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-results
           path: results.jtl
 
-          - name: Send Mail
-        if: always() # Taake test pass ho ya fail, email lazmi aye
+      - name: Send Mail
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -41,9 +41,9 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_APP_PASSWORD }}
           subject: "JMeter Test Report - ${{ github.repository }}"
-          to: "manager-email@example.com" # Yahan apni ya manager ki email likhen
+          to: "bilalkhalid@example.com" # <--- Yahan apni email confirm karein
           from: GitHub Actions
           body: |
             JMeter Performance Test complete ho gaya hai.
             Status: ${{ job.status }}
-            Aap results GitHub Actions se download kar sakte hain.
+            Aap results GitHub se download kar sakte hain.
