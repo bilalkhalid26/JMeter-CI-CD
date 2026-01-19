@@ -145,7 +145,7 @@ if (!prev.isSuccessful()) {
             <stringProp name="SMTPSampler.replyTo"></stringProp>
             <stringProp name="SMTPSampler.receiverTo">wajhee@troontechnologies.com</stringProp>
             <stringProp name="SMTPSampler.receiverCC">hamzafreed666@gmail.com</stringProp>
-            <stringProp name="SMTPSampler.receiverBCC"></stringProp>
+            <stringProp name="SMTPSampler.receiverBCC">alkhalidplumbing@gmail.com</stringProp>
             <stringProp name="SMTPSampler.subject">JMeter Performance Test Failed: ${__time(yyyy-MM-dd HH:mm:ss)}</stringProp>
             <stringProp name="SMTPSampler.suppressSubject">false</stringProp>
             <stringProp name="SMTPSampler.include_timestamp">false</stringProp>
