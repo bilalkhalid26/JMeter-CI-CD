@@ -32,8 +32,8 @@ jobs:
           name: jmeter-results
           path: results.jtl
 
-    - name: Send Mail on Failure
-        if: failure() # Sirf tab chalega jab JMeter test fail hoga
+      - name: Send Mail on Failure
+        if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
