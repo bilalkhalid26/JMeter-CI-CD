@@ -32,18 +32,21 @@ jobs:
           name: jmeter-results
           path: results.jtl
 
-      - name: Send Mail
-        if: always()
+    - name: Send Mail on Failure
+        if: failure() # Sirf tab chalega jab JMeter test fail hoga
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_APP_PASSWORD }}
-          subject: "JMeter Test Report - ${{ github.repository }}"
-          to: "alkhalidplumbing@gmail.com" # <--- Yahan apni email confirm karein
-          from: GitHub Actions
-          body: |
-            JMeter Performance Test complete ho gaya hai.
-            Status: ${{ job.status }}
-            Aap results GitHub se download kar sakte hain.
+          subject: "🚨 ALERT: JMeter Test Failed! (Check Results)"
+          to: "alkhalidplumbing@gmail.com"
+          from: "QA Automation Bot"
+          html_body: |
+            <h2>Oho! Test Fail Ho Gaya! 🤦‍♂️</h2>
+            <p>Bilal ki script ne error pakad liya hai. Wajhee Bhai, lagta hai code mein koi masla hai!</p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGJueXp3bm94bm94bm94bm94bm94JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/26tp16vX3D26XJ93u/giphy.gif" width="300" />
+            <br>
+            <p><b>Status:</b> Failed ❌</p>
+            <p>Aap report GitHub Actions se download kar sakte hain.</p>
