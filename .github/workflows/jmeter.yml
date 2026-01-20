@@ -33,7 +33,7 @@ jobs:
           path: results.jtl
 
       - name: Send Mail on Failure
-        if: failure()
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
